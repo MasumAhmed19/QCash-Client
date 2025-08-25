@@ -1,5 +1,4 @@
-import TravelRegister from "../assets/imgaes/travel-register.jpg"
-import { Link } from "react-router";
+import TravelRegister from "../assets/imgaes/travel-register.jpg";
 import Logo from "@/assets/icons/Logo";
 import { RegistrationForm } from "@/components/modules/Authentication/RegistrationForm";
 
@@ -14,13 +13,10 @@ export default function Register() {
         />
       </div>
       <div className="flex flex-col gap-4 p-6 md:p-10">
-        <div className="flex justify-center gap-2 md:justify-start">
-          <Link to="/" className="flex items-center gap-2 font-medium">
-            <Logo/>
-          </Link>
-        </div>
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
+          <div className="w-full max-w-xs flex flex-col items-center space-y-5">
+            <Logo />
+
             <RegistrationForm />
           </div>
         </div>

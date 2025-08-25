@@ -4,3 +4,12 @@ export interface IResponse<T> {
   message: string
   data: T
 }
+
+
+export interface IFeatureCard{
+  title?: string, 
+  description?: string,
+  image:string,
+  isContent: boolean,
+  bgColor?: string
+}

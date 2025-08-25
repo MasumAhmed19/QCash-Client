@@ -22,23 +22,23 @@ export function LoginForm({
   const navigate = useNavigate();
   const form = useForm();
   const [login] = useLoginMutation();
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
       console.log(res);
-      navigate('/')
-      toast.success('Login Successfull')
-
+      navigate("/");
+      toast.success("Login Successfull");
     } catch (err: any) {
       console.error(err);
 
-      if (err.data.message==='User is not verified') {
+      if (err.data.message === "User is not verified") {
         toast.error("Your account is not verified");
         navigate("/verify", { state: data.email });
       }
 
-      if(err.data.message==='Pasword does not match'){
-        toast.error('Invalid Credentials')
+      if (err.data.message === "Pasword does not match") {
+        toast.error("Invalid Credentials");
       }
     }
   };
@@ -53,16 +53,16 @@ export function LoginForm({
       </div>
       <div className="grid gap-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6  min-w-sm">
             <FormField
               control={form.control}
-              name="email"
+              name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Phone</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="john@example.com"
+                      placeholder="01521213434"
                       {...field}
                       value={field.value || ""}
                     />
@@ -104,7 +104,7 @@ export function LoginForm({
         </div>
 
         <Button
-        onClick={()=> window.open(`${config.baseUrl}/auth/google`)}
+          onClick={() => window.open(`${config.baseUrl}/auth/google`)}
           type="button"
           variant="outline"
           className="w-full cursor-pointer"
@@ -112,7 +112,7 @@ export function LoginForm({
           Login with Google
         </Button>
       </div>
-      <div className="text-center text-sm">
+      <div className="text-center text-sm space-x-2">
         Don&apos;t have an account?{" "}
         <Link to="/register" replace className="underline underline-offset-4">
           Register
