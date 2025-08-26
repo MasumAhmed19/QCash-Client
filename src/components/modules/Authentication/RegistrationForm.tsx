@@ -72,7 +72,7 @@ export function RegistrationForm({
     const toastId = toast.loading("Creating your account...");
 
     // Format phone number correctly
-    const phoneNumber = '+880' + data.phone;
+    const phoneNumber = '0' + data.phone;
     
     const userInfo = {
       name: data.name.trim(),
@@ -99,6 +99,7 @@ export function RegistrationForm({
       // });
       
       console.log("Registration successful:", result);
+      navigate('/')
       
     } catch (error: any) {
       console.error("Registration error:", error);
