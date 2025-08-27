@@ -19,25 +19,20 @@ import {
 } from "@/redux/features/auth/auth.api";
 import { useAppDispatch } from "@/redux/hook";
 import { toast } from "sonner";
-import { role } from "@/constants/role";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "/", label: "Home", role:"PUBLIC" },
-  { href: "/about", label: "About", role:"PUBLIC"  },
-  { href: "/features", label: "Features", role:"PUBLIC"  },
-  { href: "/customer", label: "Customers", role:"PUBLIC"  },
-  { href: "/resource", label: "Resources", role:"PUBLIC"  },
-  { href: "/admin", label: "Dashboard", role:role.admin  },
-  { href: "/user", label: "Dashboard", role:role.user   },
-  { href: "/agent", label: "Dashboard", role:role.agent   },
+  { href: "/", label: "Home", role: "PUBLIC" },
+  { href: "/features", label: "Features", role: "PUBLIC" },
+  { href: "/about", label: "About", role: "PUBLIC" },
 ];
+
 
 export default function Navbar() {
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const { data } = useUserInfoQuery(undefined);
 
   const handleLogout = async () => {
@@ -46,8 +41,8 @@ export default function Navbar() {
       await logout(undefined).unwrap();
       // Reset API state to clear all cached data
       dispatch(authApi.util.resetApiState());
-      navigate('/')
-      toast.success('Logout successfull')
+      navigate("/");
+      toast.success("Logout successfull");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -112,33 +107,33 @@ export default function Navbar() {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-              <Logo />
+            <Logo />
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden md:ml-20">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
-                 <>
-                 {
-                   link.role==="PUBLIC" && (<NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      asChild
-                      className="text-foreground hover:text-primary py-1.5 font-medium"
-                    >
-                      <Link to={link.href}>{link.label}</Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>)
-                 }
-                  {
-                   link.role===data?.data?.role && (<NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      asChild
-                      className="text-foreground hover:text-primary py-1.5 font-medium"
-                    >
-                      <Link to={link.href}>{link.label}</Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>)
-                 }
-                 </>
+                  <>
+                    {link.role === "PUBLIC" && (
+                      <NavigationMenuItem key={index}>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-foreground hover:text-primary py-1.5 font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                    {link.role === data?.data?.role && (
+                      <NavigationMenuItem key={index}>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-foreground hover:text-primary py-1.5 font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                  </>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
@@ -148,21 +143,21 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           {/* <ModeToggle /> */}
           {data?.data?.phone ? (
-            <Button
-              onClick={() => handleLogout()}
-              variant="outline"
-              className="text-sm"
-            >
-              Logout
-            </Button>
+           <Button asChild className="text-sm  rounded-full">
+                <Link to={`/${data?.data?.role}`} >Dashboard</Link>
+              </Button>
           ) : (
             <>
-            <Button asChild variant="outline" className="text-sm rounded-full ">
-              <Link to="/login">Sign In</Link>
-            </Button>
-            <Button asChild className="text-sm hidden md:block rounded-full">
-              <Link to="/register">Create an Account</Link>
-            </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="text-sm rounded-full "
+              >
+                <Link to="/login">Sign In</Link>
+              </Button>
+              <Button asChild className="text-sm hidden md:block rounded-full">
+                <Link to="/register">Create an Account</Link>
+              </Button>
             </>
           )}
         </div>

@@ -44,20 +44,6 @@ export const userSidebar :ISidebarItems[] = [
         component: Transactions,
       },
     ],
-  },{
-    title: "Settings",
-    items: [
-      {
-        title: "Profile",
-        url: "/user/profile",
-        component: Profile,
-      },
-      {
-        title: "App Settings",
-        url: "/user/settings",
-        component: Analytics,
-      },
-    ],
-  },
+  }
   
 ];
