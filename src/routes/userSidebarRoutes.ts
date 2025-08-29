@@ -1,10 +1,10 @@
-import Analytics from "@/pages/Admin/Analytics";
-import Profile from "@/pages/Profile";
+import Analytics from "@/pages/Analytics";
 import Deposit from "@/pages/User/Deposit";
 import SendMoney from "@/pages/User/SendMoney";
 import Transactions from "@/pages/User/Transactions";
-import WithDraw from "@/pages/User/WithDraw";
 import type { ISidebarItems } from "@/types";
+import CashOut from "@/pages/User/CashOut";
+import AddMoney from "@/pages/User/AddMoney";
 
 export const userSidebar :ISidebarItems[] = [
   {
@@ -19,21 +19,23 @@ export const userSidebar :ISidebarItems[] = [
   },{
     title: "Wallet",
     items: [
-      {
-        title: "Deposit",
-        url: "/user/deposit",
-        component: Deposit,
-      },
-      {
-        title: "Withdraw",
-        url: "/user/withdraw",
-        component: WithDraw,
-      },
-      {
+       {
         title: "Send Money",
         url: "/user/send-money",
         component: SendMoney,
       },
+      {
+        title: "Cash Out",
+        url: "/user/cash-out",
+        component: CashOut,
+      },
+      {
+        title: "Add Money",
+        url: "/user/add-money",
+        component: AddMoney,
+      },
+      
+     
     ],
   },{
     title: "Transactions",

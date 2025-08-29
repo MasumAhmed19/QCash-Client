@@ -26,7 +26,7 @@ export function LoginForm({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
-      
+      console.log(res?.data?.user?.role)
       navigate(`/${res?.data?.user?.role}`);
       toast.success("Login Successfull");
     } catch (err: any) {

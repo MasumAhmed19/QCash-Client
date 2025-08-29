@@ -27,4 +27,51 @@ export interface ISidebarItems{
 }
 
 
+export interface ITransactionType{
+    "SEND"?:string,
+    "ADD"?:string,
+    "WITHDRAW"?:string,
+    "CASH_IN"?:string,
+    "CASH_OUT"?:string,
+    "B2B_TRANSFER"?: string
+}
+
+
 export type TRole = "SUPER_ADMIN" | "ADMIN" | "USER" | "AGENT"
+
+
+export type TransactionType= "SEND" | "ADD"| "WITHDRAW"| "WITHDRAW"| "CASH_IN"| "CASH_OUT" | "B2B_TRANSFER"
+
+
+
+
+ interface From {
+  _id: string
+  name: string
+  phone: string
+}
+
+ interface To {
+  _id: string
+  name: string
+  phone: string
+}
+
+ interface Initiator {
+  _id: string
+  name: string
+  phone: string
+}
+export interface ITransactions {
+  _id: string
+  from: From
+  to: To
+  type: string
+  amount: number
+  status: string
+  initiator: Initiator
+  fee: number
+  commission: number
+  createdAt: string
+  updatedAt: string
+}
