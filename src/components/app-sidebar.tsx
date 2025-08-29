@@ -2,6 +2,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -16,6 +17,7 @@ import { Link } from "react-router"
 import { adminSidebarItems } from "@/routes/adminSIdebarRoutes"
 import { getSidebarItems } from "@/utils/getSidebarItems"
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { NavUser } from "./nav-user"
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -50,6 +52,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <SidebarFooter>
+          <NavUser user={UserData?.data} />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )

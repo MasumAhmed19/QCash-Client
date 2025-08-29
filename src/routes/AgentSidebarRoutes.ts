@@ -1,10 +1,11 @@
-import Analytics from "@/pages/Admin/Analytics";
+import Analytics from "@/pages/Analytics";
 import CashIn from "@/pages/Agent/CashIn";
-import CashOut from "@/pages/Agent/CashOut";
 import Commissions from "@/pages/Agent/Commissions";
 import Profile from "@/pages/Profile";
 import Transactions from "@/pages/User/Transactions";
 import type { ISidebarItems } from "@/types";
+import B2BTransfer from "@/pages/Agent/B2BTransfer";
+import AddMoney from "@/pages/Agent/AddMoney";
 
 export const agentSidebarItems :ISidebarItems[] = [
   {
@@ -25,9 +26,13 @@ export const agentSidebarItems :ISidebarItems[] = [
         component: CashIn,
       },
       {
-        title: "Cash Out",
-        url: "/agent/cash-out",
-        component: CashOut,
+        title: "B2B Transfer",
+        url: "/agent/b2b-transfer",
+        component: B2BTransfer,
+      },{
+        title: "Add Money",
+        url: "/agent/add-money",
+        component: AddMoney,
       },
     ],
   },{
@@ -51,11 +56,6 @@ export const agentSidebarItems :ISidebarItems[] = [
         title: "Profile",
         url: "/agent/profile",
         component: Profile,
-      },
-      {
-        title: "App Settings",
-        url: "/agent/settings",
-        component: Analytics,
       },
     ],
   },

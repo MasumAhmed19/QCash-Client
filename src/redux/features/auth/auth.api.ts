@@ -17,6 +17,7 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data: userInfo,
       }),
+      invalidatesTags:["USER", "TRANSACTIONS"]
     }),
 
     userInfo: builder.query({
@@ -24,7 +25,7 @@ export const authApi = baseApi.injectEndpoints({
         url: "/auth/me",
         method: "GET",
       }),
-      providesTags: ["USER"],
+      providesTags: ["USER", "TRANSACTIONS"],
     }),
     logout: builder.mutation({
       query: () => ({
