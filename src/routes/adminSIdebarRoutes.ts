@@ -48,20 +48,10 @@ export const adminSidebarItems :ISidebarItems[] = [
     title: "Settings",
     items: [
       {
-        title: "System Settings",
-        url: "/admin/system-settings",
-        component: Analytics,
-      },
-      {
         title: "Profile",
         url: "/admin/profile",
         component: Profile,
-      },
-      {
-        title: "App Settings",
-        url: "/admin/settings",
-        component: Analytics,
-      },
+      }
     ],
   },
 ];

@@ -75,3 +75,27 @@ export interface ITransactions {
   createdAt: string
   updatedAt: string
 }
+
+
+export interface IWallet {
+  _id?: string,
+  status?: "ACTIVE" | "BLOCKED",
+  balance?: number
+}
+
+export interface IUser {
+    _id?: string,
+    name: string,
+    email?: string,
+    phone: string, 
+    presentAddress?: string,
+    permanentAddress?: string,
+    nidNumber?: string,
+    picture?:string,
+    bankAccount?:string,
+    role: TRole,
+    status: 'ACTIVE' | 'PENDING' | 'SUSPEND',
+    isVerified?: boolean, 
+    transactions?: string[],
+    wallet?: IWallet
+}
