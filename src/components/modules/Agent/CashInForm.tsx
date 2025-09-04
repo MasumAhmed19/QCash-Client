@@ -15,7 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import {  Send } from "lucide-react";
-import { useCashOutMutation } from "@/redux/features/user/user.api";
 import { toast } from "sonner";
 import { useCashInMutation } from "@/redux/features/agent/agent.api";
 
@@ -48,7 +47,7 @@ const CashInForm = () => {
     }
 
     try{
-      const res = await cashIn(transactionInfo).unwrap();
+       await cashIn(transactionInfo).unwrap();
 
       toast.success("Successfully cashed-in")
 

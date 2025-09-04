@@ -1,5 +1,4 @@
 import Analytics from "@/pages/Analytics";
-import Deposit from "@/pages/User/Deposit";
 import SendMoney from "@/pages/User/SendMoney";
 import Transactions from "@/pages/User/Transactions";
 import type { ISidebarItems } from "@/types";

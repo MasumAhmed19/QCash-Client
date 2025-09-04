@@ -1,5 +1,4 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -9,11 +8,9 @@ import {
   Phone,
   Wallet,
   CheckCircle,
-  XCircle,
   ArrowUpRight,
   ArrowDownLeft,
   Plus,
-  Clock,
   DollarSign,
   MoveRight,
   MoveLeft,
@@ -21,7 +18,7 @@ import {
 } from "lucide-react";
 import { useSpecificUserDetailQuery } from "@/redux/features/admin/admin.api";
 import { useParams } from "react-router";
-import type { ITransaction, ITransactionType } from "@/types";
+import type {  ITransactionType } from "@/types";
 
 // Utility function to format relative time
 const formatTimeAgo = (dateString: string) => {

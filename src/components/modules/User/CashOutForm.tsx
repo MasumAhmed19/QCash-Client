@@ -47,7 +47,7 @@ const CashOutForm = () => {
     }
 
     try{
-      const res = await cashOut(transactionInfo).unwrap();
+       await cashOut(transactionInfo).unwrap();
 
       toast.success("Successfully Withdraw money")
 

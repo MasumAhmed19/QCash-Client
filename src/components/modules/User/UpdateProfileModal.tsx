@@ -1,6 +1,4 @@
-"use client";
-
-import { useId, useState } from "react";
+import { useState } from "react";
 import { useFileUpload } from "@/hooks/use-file-upload";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +22,6 @@ interface EditProfilePicModalProps {
 export default function UpdateProfileModal({
   initialImage,
 }: EditProfilePicModalProps) {
-  const id = useId();
   const [updateProfilePic] = useUpdateProfilePicMutation();
   const [open, setOpen] = useState(false)
 

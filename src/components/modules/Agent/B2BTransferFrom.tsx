@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import {  Send } from "lucide-react";
 import { toast } from "sonner";
-import { useB2bTransferMutation, useCashInMutation } from "@/redux/features/agent/agent.api";
+import { useB2bTransferMutation } from "@/redux/features/agent/agent.api";
 
 const formSchema = z.object({
   recieverAgentPhone: z.string().length(11, {
@@ -47,7 +47,7 @@ const B2BTransferFrom = () => {
     }
 
     try{
-      const res = await b2bTransfer(transactionInfo).unwrap();
+     await b2bTransfer(transactionInfo).unwrap();
 
       toast.success("Successfully Transferred money")
 

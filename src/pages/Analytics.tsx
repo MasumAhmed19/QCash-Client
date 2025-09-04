@@ -10,16 +10,6 @@ import {
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
-import type {  TransactionType } from "@/types";
-
-const TransactionTypeValue:Record<TransactionType, string>={
-  "WITHDRAW":"Withdraw",
-  "CASH_IN":"Cash In",
-  "CASH_OUT":"Cash Out",
-  "SEND":"Send Money",
-  "ADD":"Add Money",
-  "B2B_TRANSFER":"B2B Transfer"
-}
 
 
 const Analytics = () => {

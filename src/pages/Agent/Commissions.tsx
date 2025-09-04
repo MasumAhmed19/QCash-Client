@@ -1,8 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
 
 const Commissions = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-[50vh] flex items-center justify-center p-6">

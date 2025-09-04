@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/sidebar"
 import Logo from "@/assets/icons/Logo"
 import { Link } from "react-router"
-import { adminSidebarItems } from "@/routes/adminSIdebarRoutes"
 import { getSidebarItems } from "@/utils/getSidebarItems"
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { NavUser } from "./nav-user"

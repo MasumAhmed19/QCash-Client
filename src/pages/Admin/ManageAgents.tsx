@@ -20,11 +20,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card,CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
   useAllAgentsQuery,
-  useBlockWalletMutation,
 } from "@/redux/features/admin/admin.api";
 import type { IUser } from "@/types";
 import { EllipsisVertical } from "lucide-react";
@@ -33,7 +32,6 @@ import { Link } from "react-router";
 
 const ManageAgents = () => {
   const { data:allUsers, isLoading } = useAllAgentsQuery(undefined);
-  const [blockWallet] = useBlockWalletMutation();
 
   const statusOptions = [
     { label: "Active", value: "ACTIVE", className: "text-green-600" },

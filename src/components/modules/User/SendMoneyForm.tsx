@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { ArrowRight, Send } from "lucide-react";
+import {  Send } from "lucide-react";
 import { useSendMoneyMutation } from "@/redux/features/user/user.api";
 import { toast } from "sonner";
 
@@ -47,7 +47,7 @@ const SendMoneyForm = () => {
     }
 
     try{
-      const res = await SendMoney(transactionInfo).unwrap();
+      await SendMoney(transactionInfo).unwrap();
 
       toast.success("Successfully Send")
 

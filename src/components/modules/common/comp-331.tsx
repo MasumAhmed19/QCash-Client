@@ -1,4 +1,4 @@
-import { useId, useState } from "react"
+import { useId } from "react"
 import { CheckIcon, ImagePlusIcon, XIcon } from "lucide-react"
 
 import { useCharacterLimit } from "@/hooks/use-character-limit"

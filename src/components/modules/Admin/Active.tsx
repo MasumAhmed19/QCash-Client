@@ -25,7 +25,7 @@ const Active = ({phone}:BlockProps) => {
   const handleWalletStatus = async (phone: string) => {
     const toastId = toast.loading("Activating wallet...");
     try {
-      const result = await activeWallet(phone).unwrap();
+       await activeWallet(phone).unwrap();
       toast.success("Succesfully activate this wallet", {
         id: toastId,
         duration: 1000,

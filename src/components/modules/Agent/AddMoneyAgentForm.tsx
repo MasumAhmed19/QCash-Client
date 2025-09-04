@@ -48,7 +48,7 @@ const AddMoneyAgentForm = () => {
     }
 
     try{
-      const res = await agentAddMoney(transactionInfo).unwrap();
+       await agentAddMoney(transactionInfo).unwrap();
 
       toast.success("Money added successfully")
 
