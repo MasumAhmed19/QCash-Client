@@ -29,8 +29,9 @@ const formSchema = z.object({
     }),
 });
 
-const AddMoneyForm = () => {
+const AddMoneyAgentForm = () => {
   const [agentAddMoney] = useAgentAddMoneyMutation();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -122,4 +123,4 @@ const AddMoneyForm = () => {
   );
 };
 
-export default AddMoneyForm;
+export default AddMoneyAgentForm;

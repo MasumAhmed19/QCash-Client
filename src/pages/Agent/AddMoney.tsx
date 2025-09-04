@@ -1,6 +1,6 @@
+import AddMoneyAgentForm from "@/components/modules/Agent/AddMoneyAgentForm";
 import AvailableBalance from "@/components/modules/common/AvailableBalance";
 import ReceptRecipients from "@/components/modules/common/ReceptRecipients";
-import AddMoneyForm from "@/components/modules/User/AddMoneyForm";
 
 
 const AddMoney = () => {
@@ -8,7 +8,7 @@ const AddMoney = () => {
     <div className="space-y-5">
       <AvailableBalance />
       <div className="space-y-5 flex flex-col lg:flex-row gap-5">
-        <AddMoneyForm />
+        <AddMoneyAgentForm />
         <ReceptRecipients type="ADD" />
       </div>
     </div>

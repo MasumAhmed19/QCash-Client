@@ -14,43 +14,73 @@ import Unauthorized from "@/pages/Unauthorized";
 import { withAuth } from "@/utils/withAuth";
 import { role } from "@/constants/role";
 import type { TRole } from "@/types";
+import UserDetail from "@/components/modules/Admin/UserDetail";
+import { Features } from "@/pages/Features/Features";
 
 export const router = createBrowserRouter([
-    {
-        Component: App,
-        path: '/',
-        children:[
-            {
-                index: true,
-                Component: Home,
-            },{
-                path:'/about',
-                Component: About
-            }
-        ]
-    },{
-        Component: withAuth(DashboardLayout, role.admin as TRole),
-        path: '/admin',
-        children: [{index:true, element:<Navigate to='/admin/analytics' />}, ...generateRoutes(adminSidebarItems)]
-    },{
-        Component: withAuth(DashboardLayout, role.agent as TRole),
-        path: '/agent',
-        children: [{index:true, element:<Navigate to='/agent/analytics' />},...generateRoutes(agentSidebarItems)]
-    },{
-        Component:withAuth(DashboardLayout, role.user as TRole),
-        path: '/user',
-        children: [{index:true, element:<Navigate to='/user/analytics' />},...generateRoutes(userSidebar)]
-    },{
-        Component: Login,
-        path: '/login'
-    },{
-        Component: Register,
-        path: '/register'
-    },{
-        Component: Verify,
-        path: '/verify'
-    },{
-        Component: Unauthorized,
-        path:'/unauthorized'
-    }
-])
+  {
+    Component: App,
+    path: "/",
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/about",
+        Component: About,
+      }, {
+        path: "/features",
+        Component: Features,
+      },
+    ],
+  },
+  {
+    Component: withAuth(DashboardLayout, role.admin as TRole),
+    path: "/admin",
+    children: [
+      { index: true, element: <Navigate to="/admin/analytics" /> },
+      ...generateRoutes(adminSidebarItems),
+      {
+        path: "users/:phone",
+        Component: UserDetail,
+      },
+      {
+        path: "agents/:phone",
+        Component: UserDetail,
+      },
+    ],
+  },
+  {
+    Component: withAuth(DashboardLayout, role.agent as TRole),
+    path: "/agent",
+    children: [
+      { index: true, element: <Navigate to="/agent/analytics" /> },
+      ...generateRoutes(agentSidebarItems),
+    ],
+  },
+  {
+    Component: withAuth(DashboardLayout, role.user as TRole),
+    path: "/user",
+    children: [
+      { index: true, element: <Navigate to="/user/analytics" /> },
+      ...generateRoutes(userSidebar),
+    ],
+  },
+  {
+    Component: Login,
+    path: "/login",
+  },
+  {
+    Component: Register,
+    path: "/register",
+  },
+  {
+    Component: Verify,
+    path: "/verify",
+  },
+  {
+    Component: Unauthorized,
+    path: "/unauthorized",
+  },
+]);

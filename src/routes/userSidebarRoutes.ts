@@ -5,6 +5,7 @@ import Transactions from "@/pages/User/Transactions";
 import type { ISidebarItems } from "@/types";
 import CashOut from "@/pages/User/CashOut";
 import AddMoney from "@/pages/User/AddMoney";
+import Profile from "@/pages/Profile";
 
 export const userSidebar :ISidebarItems[] = [
   {
@@ -46,6 +47,15 @@ export const userSidebar :ISidebarItems[] = [
         component: Transactions,
       },
     ],
-  }
+  },{
+    title: " Settings",
+    items: [
+      {
+        title: "Profile",
+        url: "/user/profile",
+        component: Profile,
+      }
+    ],
+  },
   
 ];

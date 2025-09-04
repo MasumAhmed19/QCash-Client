@@ -39,6 +39,26 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["TRANSACTIONS"],
     }),
+
+    updateInfo: builder.mutation({
+      query: (userInfo) => ({
+        url: "/user/update-information",
+        method: "PATCH",
+        data: userInfo,
+      }),
+      invalidatesTags:["USER"]
+    }),
+
+    updateProfilePic: builder.mutation({
+      query: (formData) => ({
+        url: "/user/update-profile-pic",
+        method: "PATCH",
+        data: formData,
+      }),
+      invalidatesTags:["USER"]
+    }),
+
+
     
    
   }),
@@ -48,5 +68,7 @@ export const {
   useSendMoneyMutation,
   useGetEachTransactionsQuery,
   useCashOutMutation,
-  useAddMoneyMutation
+  useAddMoneyMutation,
+  useUpdateInfoMutation,
+  useUpdateProfilePicMutation
 } = userApi;

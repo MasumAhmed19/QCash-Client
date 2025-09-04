@@ -31,6 +31,8 @@ export function LoginForm({
       toast.success("Login Successfull");
     } catch (err: any) {
       console.error(err);
+      toast.error(err.data.message);
+
 
       if (err.data.message === "User is not verified") {
         toast.error("Your account is not verified");

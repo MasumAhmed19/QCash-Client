@@ -29,6 +29,7 @@ import {
 import type { IUser } from "@/types";
 import { EllipsisVertical } from "lucide-react";
 import { Loader2 } from "lucide-react";
+import { Link } from "react-router";
 
 const ManageAgents = () => {
   const { data:allUsers, isLoading } = useAllAgentsQuery(undefined);
@@ -54,7 +55,7 @@ const ManageAgents = () => {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="md:p-6 space-y-6">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
         <h1 className="text-2xl font-bold">All Agents</h1>
@@ -177,7 +178,11 @@ const ManageAgents = () => {
                           <hr />
 
                           <DropdownMenuGroup>
-                            <DropdownMenuItem>View Details</DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Link to={`/admin/agents/${user?.phone}`}>
+                                View Details
+                              </Link>
+                            </DropdownMenuItem>
 
                             <DropdownMenuSub>
                               <DropdownMenuSubTrigger>

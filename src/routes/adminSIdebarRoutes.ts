@@ -5,6 +5,7 @@ import Transactions from "@/pages/Admin/Transactions";
 import Profile from "@/pages/Profile";
 import type { ISidebarItems } from "@/types";
 import { lazy } from "react";
+import AnalyticDashboard from "@/pages/Admin/AnalyticDashbord";
 
 const Analytics = lazy(()=>import('@/pages/Analytics'))
 
@@ -15,7 +16,7 @@ export const adminSidebarItems :ISidebarItems[] = [
       {
         title: "Analytics",
         url: "/admin/analytics",
-        component: Analytics,
+        component: AnalyticDashboard,
       },
     ],
   },

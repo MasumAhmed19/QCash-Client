@@ -99,3 +99,16 @@ export interface IUser {
     transactions?: string[],
     wallet?: IWallet
 }
+
+
+export interface ITransaction{
+    _id?: string,
+    from?: IUser
+    to?: IUser,
+    type?: ITransactionType,
+    amount?: number,
+    status?: 'COMPLETE' | 'FAILED' | 'PENDING',
+    initiator?: IUser
+    fee?: number,
+    commission?: number,
+}

@@ -20,18 +20,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
   useAllUsersQuery,
-  useBlockWalletMutation,
+  useUpdateStatusMutation
 } from "@/redux/features/admin/admin.api";
 import type { IUser } from "@/types";
 import { EllipsisVertical, Loader2 } from "lucide-react";
+import { Link } from "react-router";
+import { toast } from "sonner";
 
 const ManageUsers = () => {
   const { data: allUsers, isLoading } = useAllUsersQuery(undefined);
-  const [blockWallet] = useBlockWalletMutation();
+  const [updateStatus] = useUpdateStatusMutation()
 
   const statusOptions = [
     { label: "Active", value: "ACTIVE", className: "text-green-600" },
@@ -39,10 +41,19 @@ const ManageUsers = () => {
     { label: "Suspend", value: "SUSPEND", className: "text-red-600" },
   ];
 
-  const handleStatusChange = async (userId: string, newStatus: string) => {
-    console.log(userId, newStatus);
-    // TODO: hook up API mutation
-  };
+const handleStatusChange = async (phone: string, newStatus: string) => {
+  const toastId = toast.loading("Updating user status...");
+  const statusCapital = newStatus.toUpperCase()
+
+  try {
+    await updateStatus({ phone, statusInfo: { status: statusCapital } }).unwrap();
+
+    toast.success("User status updated successfully 🎉", { id: toastId });
+  } catch (err) {
+    console.error("Failed to update status:", err);
+    toast.error("Failed to update user status. Please try again.", { id: toastId });
+  }
+};
 
   if (isLoading) {
     return (
@@ -53,7 +64,7 @@ const ManageUsers = () => {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="md:p-6 space-y-6">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
         <h1 className="text-2xl font-bold">All Users</h1>
@@ -176,7 +187,11 @@ const ManageUsers = () => {
                           <hr />
 
                           <DropdownMenuGroup>
-                            <DropdownMenuItem>View Details</DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Link to={`/admin/users/${user?.phone}`}>
+                                View Details
+                              </Link>
+                              </DropdownMenuItem>
 
                             <DropdownMenuSub>
                               <DropdownMenuSubTrigger>
@@ -191,7 +206,7 @@ const ManageUsers = () => {
                                       className={opt.className}
                                       onClick={() =>
                                         handleStatusChange(
-                                          user?._id as string,
+                                          user?.phone as string,
                                           opt.value
                                         )
                                       }

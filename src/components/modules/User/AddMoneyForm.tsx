@@ -17,6 +17,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Plus, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import { useAgentAddMoneyMutation } from "@/redux/features/agent/agent.api";
+import { useAddMoneyMutation } from "@/redux/features/user/user.api";
 
 const formSchema = z.object({
   bankAccount: z.string().min(1, {
@@ -30,7 +31,7 @@ const formSchema = z.object({
 });
 
 const AddMoneyForm = () => {
-  const [addMoney] = useAgentAddMoneyMutation();
+  const [addMoney] = useAddMoneyMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
