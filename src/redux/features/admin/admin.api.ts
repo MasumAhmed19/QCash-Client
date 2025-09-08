@@ -26,11 +26,38 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: ["WALLET"],
     }),
 
+    // allTransactions: builder.query({
+    //   query: () => ({
+    //     url: "/admin/transactions",
+    //     method: "GET",
+    //   }),
+    //   providesTags: ["TRANSACTIONS"],
+    // }),
+
     allTransactions: builder.query({
-      query: () => ({
-        url: "/admin/transactions",
-        method: "GET",
-      }),
+      query: ({
+        page = 1,
+        limit = 10,
+        startDate,
+        endDate,
+        type,
+        status,
+      }: any) => {
+        const params = new URLSearchParams();
+
+        params.append("page", page.toString());
+        params.append("limit", limit.toString());
+
+        if (startDate) params.append("startDate", startDate);
+        if (endDate) params.append("endDate", endDate);
+        if (type && type !== "ALL") params.append("type", type);
+        if (status && status !== "ALL") params.append("status", status);
+
+        return {
+          url: `/admin/transactions?${params.toString()}`,
+          method: "GET",
+        };
+      },
       providesTags: ["TRANSACTIONS"],
     }),
 
@@ -90,5 +117,5 @@ export const {
   useActiveWalletMutation,
   useSpecificUserDetailQuery,
   useAnalyticInfoQuery,
-  useUpdateStatusMutation
+  useUpdateStatusMutation,
 } = adminApi;

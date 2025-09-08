@@ -63,7 +63,7 @@ export default function EditModal({ onClose }: { onClose?: () => void }) {
   const onSubmit = async (values: FormData) => {
     const toastId = toast.loading("Updating profile...");
     try {
-      console.log(values)
+      // console.log(values)
       await updateInfo(values).unwrap();
       toast.success("Profile updated successfully 🎉", { id: toastId });
       onClose?.();

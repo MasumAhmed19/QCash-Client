@@ -98,7 +98,7 @@ export function RegistrationForm({
       //   } 
       // });
       
-      console.log("Registration successful:", result);
+      // console.log("Registration successful:", result);
       navigate('/')
       
     } catch (error: any) {

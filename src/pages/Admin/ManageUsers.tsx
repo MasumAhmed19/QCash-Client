@@ -27,9 +27,10 @@ import {
   useUpdateStatusMutation
 } from "@/redux/features/admin/admin.api";
 import type { IUser } from "@/types";
-import { EllipsisVertical, Loader2 } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import { Link } from "react-router";
 import { toast } from "sonner";
+import TableLoader from "@/components/modules/common/TableLoader";
 
 const ManageUsers = () => {
   const { data: allUsers, isLoading } = useAllUsersQuery(undefined);
@@ -57,11 +58,10 @@ const handleStatusChange = async (phone: string, newStatus: string) => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
+      <TableLoader />
     );
   }
+
 
   return (
     <div className="md:p-6 space-y-6">

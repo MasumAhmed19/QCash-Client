@@ -24,14 +24,18 @@ import { Card,CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
   useAllAgentsQuery,
+  useUpdateStatusMutation,
 } from "@/redux/features/admin/admin.api";
 import type { IUser } from "@/types";
 import { EllipsisVertical } from "lucide-react";
-import { Loader2 } from "lucide-react";
 import { Link } from "react-router";
+import { toast } from "sonner";
+import TableLoader from "@/components/modules/common/TableLoader";
 
 const ManageAgents = () => {
   const { data:allUsers, isLoading } = useAllAgentsQuery(undefined);
+    const [updateStatus] = useUpdateStatusMutation()
+  
 
   const statusOptions = [
     { label: "Active", value: "ACTIVE", className: "text-green-600" },
@@ -39,16 +43,24 @@ const ManageAgents = () => {
     { label: "Suspend", value: "SUSPEND", className: "text-red-600" },
   ];
 
-  const handleStatusChange = async (userId: string, newStatus: string) => {
-    console.log(userId, newStatus);
-    // TODO: connect API mutation
-  };
+const handleStatusChange = async (phone: string, newStatus: string) => {
+  const toastId = toast.loading("Updating user status...");
+  const statusCapital = newStatus.toUpperCase()
+
+  try {
+    await updateStatus({ phone, statusInfo: { status: statusCapital } }).unwrap();
+
+    toast.success("User status updated successfully 🎉", { id: toastId });
+  } catch (err) {
+    console.error("Failed to update status:", err);
+    toast.error("Failed to update user status. Please try again.", { id: toastId });
+  }
+};
+
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
+      <TableLoader />
     );
   }
 

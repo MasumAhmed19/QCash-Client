@@ -2,7 +2,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import {
-  Loader2,
   User,
   MapPin,
   Phone,
@@ -19,9 +18,10 @@ import EditModal from "@/components/modules/common/EditModal";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import UpdateProfileModal from "@/components/modules/User/UpdateProfileModal";
+import ProfileLoader from "@/components/modules/common/ProfileLoader";
 
 const Profile = () => {
-  const { data: userInfo } = useUserInfoQuery(undefined);
+  const { data: userInfo, isLoading:loadingSkeleton } = useUserInfoQuery(undefined);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isLoading] = useState(false);
 
@@ -42,12 +42,8 @@ const Profile = () => {
     lastLogin: "2 hours ago",
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <Loader2 className="h-6 w-6 animate-spin" />
-      </div>
-    );
+  if (loadingSkeleton) {
+    return <ProfileLoader />;
   }
 
   if (!user) {
@@ -84,7 +80,7 @@ const Profile = () => {
                     <User className="h-16 w-16" />
                   </AvatarFallback>
                 </Avatar>
-                <UpdateProfileModal  />
+                <UpdateProfileModal />
               </div>
 
               <div className="flex-1 text-center sm:text-left sm:mt-0">

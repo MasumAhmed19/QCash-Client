@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/chart"
 import { PieChart, Pie, Cell, LabelList } from "recharts"
 import { useAnalyticInfoQuery } from "@/redux/features/admin/admin.api"
+import AdminAnalyticsLoader from "@/components/modules/Admin/AdminAnalyticsLoader"
 
 interface AnalyticData {
   users: { total: number; active: number }
@@ -28,7 +29,7 @@ export default function AnalyticDashboard() {
   const { data: analyticInfo, isLoading, isError } = useAnalyticInfoQuery(undefined)
   const data: AnalyticData | undefined = analyticInfo?.data
 
-  if (isLoading) return <div className="text-center mt-10">Loading...</div>
+  if (isLoading) return <AdminAnalyticsLoader />
   if (isError || !data) return <div className="text-center mt-10 text-red-500">Error fetching data</div>
 
   // Fixed chart data preparation

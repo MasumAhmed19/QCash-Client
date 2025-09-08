@@ -11,7 +11,7 @@ const ReceptRecipients = ({ type }: { type: string }) => {
     sortBy: "createdAt",
     sortOrder: "desc",
   });
-  console.log(transactionsData?.data);
+  // console.log(transactionsData?.data);
 
   return (
     <Card className="w-full h-full shadow-none">
